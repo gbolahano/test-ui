@@ -21,6 +21,27 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "baseUrl": ".",
+  "paths": {
+    "@/*": [
+      "./*"
+    ],
+    "@features/*": [
+      "features/*"
+    ],
+    "@components/*": [
+      "components/*"
+    ],
+    "@libs/*": [
+      "libs/*"
+    ]
+  },
+  "exclude": [
+    "node_modules"
   ]
 }
