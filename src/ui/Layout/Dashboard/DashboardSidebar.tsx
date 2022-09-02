@@ -9,7 +9,7 @@ import { Badge } from "../../Badge";
 import { SIDEBAR_LINKS, SideBarLinkProps } from "../../../utils/sidebar";
 import clsx from "clsx";
 
-const SidebarWithBadge = ({ name, link, Icon }: SideBarLinkProps) => {
+export const SidebarLinkWithBadge = ({ name, link, Icon }: SideBarLinkProps) => {
   return (
     <div>
       <a
@@ -28,7 +28,7 @@ const SidebarWithBadge = ({ name, link, Icon }: SideBarLinkProps) => {
   );
 };
 
-const Sidebar = ({ link, name, Icon, active }: SideBarLinkProps) => {
+export const SidebarLink = ({ link, name, Icon, active }: SideBarLinkProps) => {
   return (
     <div>
       <a
@@ -45,11 +45,11 @@ const Sidebar = ({ link, name, Icon, active }: SideBarLinkProps) => {
   );
 };
 
-const renderSidebarLinks = (sidebarLinks: SideBarLinkProps[]) => {
+export const renderSidebarLinks = (sidebarLinks: SideBarLinkProps[]) => {
   return sidebarLinks.map((sidebarlink) => {
     if (sidebarlink.badge) {
       return (
-        <SidebarWithBadge
+        <SidebarLinkWithBadge
           link={sidebarlink.link}
           name={sidebarlink.name}
           Icon={sidebarlink.Icon}
@@ -58,7 +58,7 @@ const renderSidebarLinks = (sidebarLinks: SideBarLinkProps[]) => {
       );
     }
     return (
-      <Sidebar
+      <SidebarLink
         link={sidebarlink.link}
         name={sidebarlink.name}
         Icon={sidebarlink.Icon}
@@ -92,8 +92,8 @@ export const DashboardSidebar = () => {
         <nav className="px-2">
           {renderSidebarLinks(SIDEBAR_LINKS)}
           <div className="mt-4">
-            <Sidebar link="/" name="Support" Icon={LifebuoyIcon} />
-            <Sidebar link="/" name="Settings" Icon={CogIcon} active />
+            <SidebarLink link="/" name="Support" Icon={LifebuoyIcon} />
+            <SidebarLink link="/" name="Settings" Icon={CogIcon} active />
           </div>
         </nav>
 

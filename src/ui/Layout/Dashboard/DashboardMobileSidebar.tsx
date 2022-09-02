@@ -7,70 +7,19 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
-import { Badge } from "../../Badge";
 
-import { SIDEBAR_LINKS, SideBarLinkProps } from "../../../utils/sidebar";
+import { SIDEBAR_LINKS } from "../../../utils/sidebar";
+import { SidebarLink, renderSidebarLinks } from "./DashboardSidebar";
 
-const SidebarWithBadge = ({ name, link, Icon }: SideBarLinkProps) => {
-  return (
-    <div>
-      <a
-        href={link}
-        className="flex transition rounded-lg px-2.5 py-2 focus:white duration-200 hover:bg-purple-700 hover:text-white items-center group justify-between"
-      >
-        <div className="flex items-center space-x-3">
-          <Icon className="h-5 w-5 text-gray-500 group-hover:text-white" />
-          <span className="text-gray-700 group-hover:text-white">{name}</span>
-        </div>
-        <Badge size="xs" className="text-gray-700">
-          10
-        </Badge>
-      </a>
-    </div>
-  );
-};
-
-const Sidebar = ({ link, name, Icon }: SideBarLinkProps) => {
-  return (
-    <div>
-      <a
-        href={link}
-        className="flex transition rounded-lg px-2.5 py-2 focus:white duration-200 hover:bg-purple-700 hover:text-white space-x-3 items-center group"
-      >
-        <Icon className="h-5 w-5 text-gray-500 group-hover:text-white" />
-        <span className="text-gray-700 group-hover:text-white">{name}</span>
-      </a>
-    </div>
-  );
-};
-
-const renderSidebarLinks = (sidebarLinks: SideBarLinkProps[]) => {
-  return sidebarLinks.map((sidebarlink) => {
-    if (sidebarlink.badge) {
-      return (
-        <SidebarWithBadge
-          link={sidebarlink.link}
-          name={sidebarlink.name}
-          Icon={sidebarlink.Icon}
-          badge={sidebarlink.badge}
-        />
-      );
-    }
-    return (
-      <Sidebar
-        link={sidebarlink.link}
-        name={sidebarlink.name}
-        Icon={sidebarlink.Icon}
-      />
-    );
-  });
-};
 type DashboardMobileSideBarProps = {
   isOpen: boolean;
   closeSidebar: () => void;
 };
 
-export const DashboardMobileSideBar = ({ isOpen, closeSidebar }: DashboardMobileSideBarProps) => {
+export const DashboardMobileSideBar = ({
+  isOpen,
+  closeSidebar,
+}: DashboardMobileSideBarProps) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -150,8 +99,8 @@ export const DashboardMobileSideBar = ({ isOpen, closeSidebar }: DashboardMobile
                 <nav className="px-2">
                   {renderSidebarLinks(SIDEBAR_LINKS)}
                   <div className="mt-4">
-                    <Sidebar link="/" name="Support" Icon={LifebuoyIcon} />
-                    <Sidebar link="/" name="Settings" Icon={CogIcon} />
+                    <SidebarLink link="/" name="Support" Icon={LifebuoyIcon} />
+                    <SidebarLink link="/" name="Settings" Icon={CogIcon} active />
                   </div>
                 </nav>
                 <div className="bg-gray-50 mx-2 rounded-md px-3 py-3 mt-4 mb-7">
